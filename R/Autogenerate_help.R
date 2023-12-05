@@ -9,5 +9,5 @@
 #'
 #' @name CorrelationGene
 #'
-#' @import Seurat, glmGamPoi, Matrix, tictoc, Hmisc, moments
+#'
 NULL

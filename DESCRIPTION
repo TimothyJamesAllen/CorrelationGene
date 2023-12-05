@@ -8,8 +8,8 @@ Author: Timothy Allen
 Maintainer: <timothy.james.allen@ki.se>
 Description: Using these functions, you can easily see the Pearsons correlations when inputting a gene of interest, a gene list and a Seurat object. Please note that currently it can only be a Seurat object.
 License: GPL-2
-Imports: glmGamPoi, Hmisc, Matrix, moments, Seurat, tictoc
+Imports:
 RoxygenNote: 7.2.3
 NeedsCompilation: no
-Packaged: 2023-12-05 10:36:33 UTC; artemis
+Packaged: 2023-12-05 12:36:01 UTC; artemis
 Depends: R (>= 3.5.0)
