@@ -6,10 +6,10 @@ Please raise any issues through Github or email me at timothy.james.allen@ki.se 
 
 # Future functions
 
-* Take multiple genes of interests
+- Take multiple genes of interests
 
-* Further statistical functions on the correlations i.e. T test, Shapiro-test, FDR
+- Further statistical functions on the correlations i.e. T test, Shapiro-test, FDR
 
-* Statistical tests for differences in correlation matrices
+- Statistical tests for differences in correlation matrices
 
-* Make a vignette!
+- Make a vignette!
