@@ -8,7 +8,7 @@
 #'
 #' @examples
 #' present_genes_RNA(obj, gene_list, genecolumn)
-*' 
+#' 
 #'
 #' @export
 present_genes_RNA = function(obj, gene_list, genecolumn) {

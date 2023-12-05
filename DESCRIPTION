@@ -11,5 +11,5 @@ License: GPL-2
 Imports: glmGamPoi, Hmisc, Matrix, moments, Seurat, tictoc
 RoxygenNote: 7.2.3
 NeedsCompilation: no
-Packaged: 2023-12-05 09:31:13 UTC; artemis
+Packaged: 2023-12-05 10:36:33 UTC; artemis
 Depends: R (>= 3.5.0)
