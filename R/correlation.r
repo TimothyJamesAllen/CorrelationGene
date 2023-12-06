@@ -30,7 +30,7 @@ correlation = function(df, goi, gene_list) {
   cat("Merging data frames...\n")
   common_genes = intersect(merged$gene, gene_list)
   
-  is_sfari <- ifelse(SFARI_genes.names %in% common_genes, TRUE, FALSE)
+  is_sfari <- ifelse(SFARI_genes$gene.symbol %in% common_genes, TRUE, FALSE)
   is_sfari <- is_sfari[1:nrow(merged)]
 
   cat("Adding gene annotations...\n")
