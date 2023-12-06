@@ -14,7 +14,7 @@ Please raise any issues through Github or email me at timothy.james.allen@ki.se 
 
 - Make a vignette!
 
-- Fix SFARI gene annotation
+- Fix SFARI gene annotation ✓
 
 - Add annotation for other NDDs 
 
