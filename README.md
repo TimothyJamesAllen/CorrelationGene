@@ -18,3 +18,13 @@ Please raise any issues through Github or email me at timothy.james.allen@ki.se 
 
 - Add annotation for other NDDs 
 
+- Add dependencies to the actual package
+
+# Dependencies 
+
+- Seurat
+- Matrix
+- tictoc
+- Hmisc
+- moments 
+- org.Hs.eg.db
