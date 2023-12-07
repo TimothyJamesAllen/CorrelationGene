@@ -28,3 +28,9 @@ Please raise any issues through Github or email me at timothy.james.allen@ki.se 
 - Hmisc
 - moments 
 - org.Hs.eg.db
+
+#Installation
+
+>install.packages(devtools)
+>library(devtools0)
+>devtools::install_github(CorrelationGene)
