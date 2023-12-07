@@ -29,7 +29,7 @@ Please raise any issues through Github or email me at timothy.james.allen@ki.se 
 - moments 
 - org.Hs.eg.db
 
-#Installation
+# Installation
 
 >install.packages(devtools)
 
