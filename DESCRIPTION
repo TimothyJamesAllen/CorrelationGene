@@ -2,8 +2,8 @@ Package: CorrelationGene
 Type: Package
 Title: Finds the correlation between a gene of interest and gene list
         on different Seurat Clusters
-Version: 0.1.0
-Date: 2023-12-04
+Version: 0.1.1
+Date: 2023-12-07
 Author: Timothy Allen
 Maintainer: <timothy.james.allen@ki.se>
 Description: Using these functions, you can easily see the Pearsons correlations when inputting a gene of interest, a gene list and a Seurat object. Please note that currently it can only be a Seurat object.
@@ -11,5 +11,5 @@ License: GPL-2
 Encoding: UTF-8
 RoxygenNote: 7.2.3
 NeedsCompilation: no
-Packaged: 2023-12-05 12:47:31 UTC; artemis
+Packaged: 2023-12-07 15:15:51 UTC; artemis
 Depends: R (>= 3.5.0)
