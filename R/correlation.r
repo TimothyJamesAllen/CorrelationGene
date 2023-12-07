@@ -13,7 +13,7 @@
 #' @export
 correlation = function(df, goi, gene_list) {
   cat("Computing correlation matrix...\n")
-
+  load("SFARI_genes.rda")
   df = rcorr(df, type = c("pearson"))
   df_r = as.data.frame(df$r)
   df_p = as.data.frame(df$P)
@@ -42,3 +42,4 @@ correlation = function(df, goi, gene_list) {
   cat("Done.\n")
   return(merged)
 }
+

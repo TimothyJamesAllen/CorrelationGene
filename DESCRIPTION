@@ -11,5 +11,5 @@ License: GPL-2
 Encoding: UTF-8
 RoxygenNote: 7.2.3
 NeedsCompilation: no
-Packaged: 2023-12-07 15:15:51 UTC; artemis
+Packaged: 2023-12-07 15:25:21 UTC; artemis
 Depends: R (>= 3.5.0)
