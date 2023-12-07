@@ -1,4 +1,4 @@
-# CorrelationGene 0.1.0
+# CorrelationGene 0.1.1
 
 CorrelationGene is a small R package that takes any Seurat object, gene of interest and gene list and calculates the Pearson correlations between the identities specified by the user. The output has each SFARI gene annotated, (https://gene.sfari.org/database/human-gene/).
 
@@ -14,7 +14,7 @@ Please raise any issues through Github or email me at timothy.james.allen@ki.se 
 
 - Make a vignette!
 
-- Fix SFARI gene annotation ✓
+- Fix SFARI gene annotation ✓ (NEW!! in CorrelationGene 0.1.1)
 
 - Add annotation for other NDDs 
 
