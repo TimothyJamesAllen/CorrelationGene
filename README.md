@@ -32,5 +32,9 @@ Please raise any issues through Github or email me at timothy.james.allen@ki.se 
 #Installation
 
 >install.packages(devtools)
->library(devtools0)
+
+>library(devtools)
+
 >devtools::install_github(CorrelationGene)
+
+>library(CorrelationGene)
