@@ -11,6 +11,6 @@ License: GPL-2
 Encoding: UTF-8
 RoxygenNote: 7.2.3
 NeedsCompilation: no
-Packaged: 2023-12-08 12:42:39 UTC; artemis
+Packaged: 2023-12-08 12:52:57 UTC; artemis
 Depends: R (>= 4.3.1)
 LazyData: True

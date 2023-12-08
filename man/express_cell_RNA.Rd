@@ -4,7 +4,7 @@
 \alias{express_cell_RNA}
 \title{Finds correlation between a gene of interest and all other genes in a Seurat object per level}
 \usage{
-express_cell_RNA(obj, goi, gene_list)
+express_cell_RNA(obj, goi, gene_list, PorS)
 }
 \arguments{
 \item{obj}{Seurat object. gene_list Gene list. goi Gene of interest.}
