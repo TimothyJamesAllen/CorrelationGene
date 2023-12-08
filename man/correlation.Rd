@@ -4,19 +4,26 @@
 \alias{correlation}
 \title{Finds correlation between a gene of interest and all other genes in a Seurat object}
 \usage{
-correlation(df, goi, gene_list)
+correlation(df, goi, gene_list, PorS)
 }
 \arguments{
-\item{obj}{Seurat object. gene_list Gene list. goi Gene of interest.}
+\item{df}{Matrix of gene expression values}
+
+\item{goi}{Gene of interest.}
+
+\item{gene_list}{Gene list.}
+
+\item{PorS}{Type of correlation to compute (P for Pearson, S for Spearman)}
 }
 \value{
-A vector of present genes
+A matrix of correlation values
 }
 \description{
 Finds correlation between a gene of interest and all other genes in a Seurat object
 }
 \examples{
-correlation(df, goi, gene_list)
+correlation(df, goi, gene_list, PorS)
+correlation(matrix,"RFX3", gene_list, "P")
 
 
 }

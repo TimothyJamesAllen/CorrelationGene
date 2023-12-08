@@ -2,19 +2,31 @@
 #'
 #' 
 #'
-#' @param obj Seurat object. gene_list Gene list. goi Gene of interest.
 #' 
-#' @return A vector of present genes
+#' @param df Matrix of gene expression values
+#' @param PorS Type of correlation to compute (P for Pearson, S for Spearman)
+#' @param goi Gene of interest.
+#' @param gene_list Gene list.
+#' 
+#' 
+#' @return A matrix of correlation values
 #'
 #' @examples
-#' correlation(df, goi, gene_list)
+#' correlation(df, goi, gene_list, PorS)
+#' correlation(matrix,"RFX3", gene_list, "P")
 #' 
 #'
 #' @export
-correlation = function(df, goi, gene_list) {
+correlation = function(df, goi, gene_list, PorS) {
+
   cat("Computing correlation matrix...\n")
-  load("SFARI_genes.rda")
-  df = rcorr(df, type = c("pearson"))
+  if (PorS == "P") {
+    df <- rcorr(as.matrix(df), type = "pearson")
+  } else if (PorS == "S") {
+    df <- rcorr(as.matrix(df), type = "spearman")
+  } else {
+    cat("Error: PorS must be either P or S")
+  }
   df_r = as.data.frame(df$r)
   df_p = as.data.frame(df$P)
   cat("extracting data...\n")
