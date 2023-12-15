@@ -1,14 +1,14 @@
 #' Finds correlation between a gene of interest and all other genes in a Seurat object per level
 #'
-#' 
+#'
 #'
 #' @param obj Seurat object. gene_list Gene list. goi Gene of interest.
-#' 
-#' @return data frame with correlation values
+#'
+#' @return matrix
 #'
 #' @examples
-#' express_cell_SCT(obj, goi, gene_list)
-#' 
+#' express_cell_SCT(obj, goi, gene_list, PorS)
+#'
 #'
 #' @export
 express_cell_SCT = function(obj, goi, gene_list, PorS) {
@@ -35,6 +35,6 @@ express_cell_SCT = function(obj, goi, gene_list, PorS) {
     cat("Done.\n")
     toc()
 
-    
+
     return(merged)
 }

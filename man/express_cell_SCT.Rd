@@ -10,13 +10,13 @@ express_cell_SCT(obj, goi, gene_list, PorS)
 \item{obj}{Seurat object. gene_list Gene list. goi Gene of interest.}
 }
 \value{
-data frame with correlation values
+matrix
 }
 \description{
 Finds correlation between a gene of interest and all other genes in a Seurat object per level
 }
 \examples{
-express_cell_SCT(obj, goi, gene_list)
+express_cell_SCT(obj, goi, gene_list, PorS)
 
 
 }
