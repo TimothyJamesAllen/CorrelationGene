@@ -56,6 +56,12 @@ for (i in 1:nrow(merged)) {
   } else {
     merged$description[i] <- "N/A"
   }
+for (i in 1:nrow(merged)) {
+  if (!is.na(is_sfari[i]) && is_sfari[i]) {
+    merged[i, "SFARI.Gene"] <- "Y"
+  }
+  }
+
 }
 
 cat("Removing GOI...\n")
