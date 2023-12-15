@@ -42,8 +42,8 @@ correlation = function(df, goi, gene_list, PorS) {
   cat("Merging data frames...\n")
   common_genes = intersect(merged$gene, gene_list)
   
-  is_sfari <- ifelse(SFARI_genes$gene.symbol %in% common_genes, TRUE, FALSE)
-  is_sfari <- is_sfari[1:nrow(merged)]
+  is_sfari <- rep(FALSE, nrow(merged))
+  is_sfari[merged$gene %in% SFARI_genes$gene.symbol] <- TRUE
 
 cat("Adding gene annotations...\n")
 mart <- useMart("ensembl", dataset = "hsapiens_gene_ensembl")
@@ -57,7 +57,7 @@ for (i in 1:nrow(merged)) {
     merged$description[i] <- "N/A"
   }
 for (i in 1:nrow(merged)) {
-  if (!is.na(is_sfari[i]) && is_sfari[i]) {
+  if (is_sfari[i]) {
     merged[i, "SFARI.Gene"] <- "Y"
   }
   }
