@@ -53,7 +53,7 @@ for (i in 1:nrow(merged)) {
 
   n = merged$external_gene_name[i]
 
-  if (n %in% SFARI_gene) {
+  if (n %in% SFARI_gene$gene.symbol) {
     merged$SFARI.Gene[i] = "TRUE"
   } else {
     merged$SFARI.Gene[i] = "FALSE"
