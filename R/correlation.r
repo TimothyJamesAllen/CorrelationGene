@@ -38,29 +38,30 @@ correlation = function(df, goi, gene_list, PorS) {
   merged = merge(goi_only_r, goi_only_p, by = "gene")
   colnames(merged)[2:3] <- c("R","P")  
   merged = merged[order(merged$R, decreasing = TRUE), ]
-  merged$SFARI.Gene = ""
   cat("Merging data frames...\n")
   common_genes = intersect(merged$gene, gene_list)
-  
-  is_sfari <- rep(FALSE, nrow(merged))
-  is_sfari[merged$gene %in% SFARI_genes$gene.symbol] <- TRUE
+
 
 cat("Adding gene annotations...\n")
 mart <- useMart("ensembl", dataset = "hsapiens_gene_ensembl")
+ensembl = getBM(attributes = c("ensembl_gene_id", "external_gene_name", "description"), mart = mart)
+merged = merge(merged, ensembl, by.x = "gene", by.y = "ensembl_gene_id")
 
-# Get gene info for all genes at once
-gene_info <- getBM(attributes = c("external_gene_name", "description"), filters = "external_gene_name", values = merged$gene, mart = mart)
+# Loop through each gene ID in the merged data frame
 
-# Create a named vector of descriptions with gene names as names
-descriptions <- setNames(gene_info$description, gene_info$external_gene_name)
+for (i in 1:nrow(merged)) {
 
-# Add descriptions to merged data frame
-merged$description <- ifelse(merged$gene %in% names(descriptions), descriptions[merged$gene], "N/A")
+  n = merged$external_gene_name[i]
 
-# Add "Y" to "SFARI.Gene" column for rows where is_sfari is TRUE
-merged[is_sfari, "SFARI.Gene"] <- "Y"
-  
-cat("Removing GOI...\n")
+  if (n %in% SFARI_gene) {
+    merged$SFARI.Gene[i] = "TRUE"
+  } else {
+    merged$SFARI.Gene[i] = "FALSE"
+  }
+
+}
+
+cat("Removing", goi "...\n")
 
 merged <- merged[-which(merged$gene == goi), ]
 
