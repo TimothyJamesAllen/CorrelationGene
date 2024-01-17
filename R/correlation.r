@@ -38,33 +38,30 @@ correlation = function(df, goi, gene_list, PorS) {
   merged = merge(goi_only_r, goi_only_p, by = "gene")
   colnames(merged)[2:3] <- c("R","P")  
   merged = merged[order(merged$R, decreasing = TRUE), ]
-  merged$SFARI.Gene = ""
   cat("Merging data frames...\n")
   common_genes = intersect(merged$gene, gene_list)
-  
-  is_sfari <- rep(FALSE, nrow(merged))
-  is_sfari[merged$gene %in% SFARI_genes$gene.symbol] <- TRUE
+
 
 cat("Adding gene annotations...\n")
 mart <- useMart("ensembl", dataset = "hsapiens_gene_ensembl")
+ensembl = getBM(attributes = c("ensembl_gene_id", "external_gene_name", "description"), mart = mart)
+merged = merge(merged, ensembl, by.x = "gene", by.y = "ensembl_gene_id")
+
 # Loop through each gene ID in the merged data frame
+
 for (i in 1:nrow(merged)) {
-  gene_id <- merged$gene[i]
-  gene_info <- getBM(attributes = c("external_gene_name", "description"), filters = "external_gene_name", values = gene_id, mart = mart)
-  if (nrow(gene_info) > 0) {
-    merged$description[i] <- gene_info$description[1]
+
+  n = merged$external_gene_name[i]
+
+  if (n %in% SFARI_gene) {
+    merged$SFARI.Gene[i] = "TRUE"
   } else {
-    merged$description[i] <- "N/A"
-  }
-for (i in 1:nrow(merged)) {
-  if (is_sfari[i]) {
-    merged[i, "SFARI.Gene"] <- "Y"
-  }
+    merged$SFARI.Gene[i] = "FALSE"
   }
 
 }
 
-cat("Removing GOI...\n")
+cat("Removing", goi "...\n")
 
 merged <- merged[-which(merged$gene == goi), ]
 
