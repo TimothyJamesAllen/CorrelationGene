@@ -43,30 +43,30 @@ correlation = function(df, goi, gene_list, PorS) {
 
 
 cat("Adding gene annotations...\n")
-mart <- useMart("ensembl", dataset = "hsapiens_gene_ensembl")
-ensembl = getBM(attributes = c("ensembl_gene_id", "external_gene_name", "description"), mart = mart)
-merged = merge(merged, ensembl, by.x = "gene", by.y = "ensembl_gene_id")
+ensembl <- AnnotationDbi::select(org.Hs.eg.db, keys = merged$gene,
+                                 columns = c("ENSEMBL", "SYMBOL", "DESCRIPTION"))
+
+colnames(ensembl) <- c("ensembl_gene_id", "external_gene_name", "description")
+
+merged <- merge(merged, ensembl, by.x = "gene", by.y = "ensembl_gene_id")
 
 # Loop through each gene ID in the merged data frame
 
 for (i in 1:nrow(merged)) {
-
-  n = merged$external_gene_name[i]
-
+  n <- merged$external_gene_name[i]
   if (n %in% SFARI_gene$gene.symbol) {
-    merged$SFARI.Gene[i] = "TRUE"
+    merged$SFARI.Gene[i] <- "TRUE"
   } else {
-    merged$SFARI.Gene[i] = "FALSE"
+    merged$SFARI.Gene[i] <- "FALSE"
   }
-
 }
 
-cat("Removing", goi "...\n")
+cat("Removing", goi, "...\n")
 
 merged <- merged[-which(merged$gene == goi), ]
 
-
 cat("Done.\n")
-  return(merged)
+
+return(merged)
 }
 
