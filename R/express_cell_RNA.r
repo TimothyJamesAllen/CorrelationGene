@@ -25,9 +25,9 @@ express_cell_RNA = function(obj, goi, gene_list, PorS, ensembl) {
             cat("Error: PorS must be either P or S")
         }
         cat("Adding celltype column...\n")
-        celltype_a$celltype = celltype
+        celltype_df_a$celltype = celltype
         cat("Merging data frames...\n")
-        merged = rbind(merged, celltype_a)
+        merged = rbind(merged, celltype_df_a)
     }
     merged = merged[order(merged$R, decreasing = TRUE), ]
     cat("Done.\n")
