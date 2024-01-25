@@ -43,7 +43,7 @@ correlation = function(df, goi, gene_list, PorS) {
 
 
 cat("Adding gene annotations...\n")
-ensembl <- mapIds(org.Hs.eg.db, keys = common_genes, column = "ENSEMBL", keytype = "SYMBOL", multiVals = "first")
+ensembl <- mapIds(org.Hs.eg.db, keys = common_genes$gene, column = "ENSEMBL", keytype = "SYMBOL", multiVals = "first")
 
 colnames(ensembl) <- c("ensembl_gene_id", "external_gene_name")
 
