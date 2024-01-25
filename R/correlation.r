@@ -68,7 +68,7 @@ correlation = function(df, goi, gene_list, PorS, ensembl) {
 # Loop through each gene ID in the merged data frame
 
 for (i in 1:nrow(merged)) {
-  n <- merged$external_gene_name[i]
+  n <- merged$gene_symbol[i]
   if (n %in% SFARI_genes$gene.symbol) {
     merged$SFARI.Gene[i] <- "TRUE"
   } else {
