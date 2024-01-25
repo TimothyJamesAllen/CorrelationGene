@@ -51,22 +51,25 @@ correlation = function(df, goi, gene_list, PorS, ensembl) {
                                  columns = "SYMBOL",
                                  keytype = "ENSEMBL")
 
-  }
 
-  merged <- merge(merged, symbols, by.x = "gene", by.y = "ENSEMBL")
+    merged <- merge(merged, symbols, by.x = "gene", by.y = "ENSEMBL")
 
 # Remove the original Ensembl gene ID column
-  merged <- merged[, !(names(merged) %in% "gene")]
+    merged <- merged[, !(names(merged) %in% "gene")]
 
 # Rename the new gene symbol column
-  colnames(merged)[colnames(merged) == "SYMBOL"] <- "gene_symbol"
+    colnames(merged)[colnames(merged) == "SYMBOL"] <- "gene_symbol"
 
 
-  cat("Done.\n")
+    cat("Done.\n")
+
+  }
+
+  
 
 
 # Loop through each gene ID in the merged data frame
-
+cat("Adding SFARI Gene column...\n")
 for (i in 1:nrow(merged)) {
   n <- merged$gene_symbol[i]
   if (n %in% SFARI_genes$gene.symbol) {
