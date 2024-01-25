@@ -44,9 +44,9 @@ correlation = function(df, goi, gene_list, PorS) {
 
 cat("Adding gene annotations...\n")
 ensembl <- AnnotationDbi::select(org.Hs.eg.db, keys = merged$gene,
-                                 columns = c("ENSEMBL", "SYMBOL", "DESCRIPTION"))
+                                 columns = c("ENSEMBL", "SYMBOL"))
 
-colnames(ensembl) <- c("ensembl_gene_id", "external_gene_name", "description")
+colnames(ensembl) <- c("ensembl_gene_id", "external_gene_name")
 
 merged <- merge(merged, ensembl, by.x = "gene", by.y = "ensembl_gene_id")
 
