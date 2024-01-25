@@ -4,7 +4,7 @@
 \alias{correlation}
 \title{Finds correlation between a gene of interest and all other genes in a Seurat object}
 \usage{
-correlation(df, goi, gene_list, PorS)
+correlation(df, goi, gene_list, PorS, ensembl)
 }
 \arguments{
 \item{df}{Matrix of gene expression values}
@@ -14,6 +14,8 @@ correlation(df, goi, gene_list, PorS)
 \item{gene_list}{Gene list.}
 
 \item{PorS}{Type of correlation to compute (P for Pearson, S for Spearman)}
+
+\item{ensembl}{Boolean, whether to convert Ensembl IDs to gene symbols}
 }
 \value{
 A matrix of correlation values
@@ -22,8 +24,8 @@ A matrix of correlation values
 Finds correlation between a gene of interest and all other genes in a Seurat object
 }
 \examples{
-correlation(df, goi, gene_list, PorS)
-correlation(matrix,"RFX3", gene_list, "P")
+correlation(df, goi, gene_list, PorS, ensembl)
+correlation(matrix,"RFX3", gene_list, "P", ensembl = "FALSE")
 
 
 }

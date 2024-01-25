@@ -2,6 +2,7 @@
 % Please edit documentation in R/Autogenerate_help.R
 \docType{package}
 \name{CorrelationGene}
+\alias{CorrelationGene-package}
 \alias{CorrelationGene}
 \title{CorrelationGene Package}
 \description{
