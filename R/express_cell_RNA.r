@@ -24,8 +24,6 @@ express_cell_RNA = function(obj, goi, gene_list, PorS, ensembl) {
         } else {
             cat("Error: PorS must be either P or S")
         }
-        cat("Removing ", goi, " from celltype: ", celltype, "\n")
-        celltype_a = celltype_df_a[!grepl(goi, celltype_df_a$gene),]
         cat("Adding celltype column...\n")
         celltype_a$celltype = celltype
         cat("Merging data frames...\n")
