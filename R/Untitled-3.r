@@ -1,1 +1,0 @@
-read.table("/Users/artemis/Downloads/Project_wg_result1705324369/enrichment_results_wg_result1705324369.txt", sep = "\t", header = TRUE)
