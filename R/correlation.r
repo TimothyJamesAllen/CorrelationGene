@@ -40,7 +40,7 @@ correlation = function(df, goi, gene_list, PorS, ensembl) {
   colnames(merged)[2:3] <- c("R","P")  
   merged = merged[order(merged$R, decreasing = TRUE), ]
   cat("Merging data frames...\n")
-  common_genes = intersect(merged$gene, gene_list)
+  common_genes = intersect(merged$gene, gene_list )
   merged = merged[merged$gene %in% common_genes, ]
 
 
@@ -54,24 +54,16 @@ correlation = function(df, goi, gene_list, PorS, ensembl) {
 
     merged <- merge(merged, symbols, by.x = "gene", by.y = "ENSEMBL")
 
-# Remove the original Ensembl gene ID column
-    merged <- merged[, !(names(merged) %in% "gene")]
-
-# Rename the new gene symbol column
-    colnames(merged)[colnames(merged) == "SYMBOL"] <- "gene_symbol"
-
-
     cat("Done.\n")
 
   }
 
-  
-
+    return(merged)
 
 # Loop through each gene ID in the merged data frame
-cat("Adding SFARI Gene column...\n")
+cat("Adding SFARI Gene column...\n", "make sure your gene column is names SYMBOL\n")
 for (i in 1:nrow(merged)) {
-  n <- merged$gene_symbol[i]
+  n <- merged$SYMBOL[i]
   if (n %in% SFARI_genes$gene.symbol) {
     merged$SFARI.Gene[i] <- "TRUE"
   } else {
@@ -79,12 +71,7 @@ for (i in 1:nrow(merged)) {
   }
 }
 
-cat("Removing", goi, "...\n")
-
-merged <- merged[-which(merged$gene == goi), ]
-
 cat("Done.\n")
 
 return(merged)
 }
-
