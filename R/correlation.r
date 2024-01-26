@@ -21,13 +21,16 @@
 correlation = function(df, goi, gene_list, PorS, ensembl) {
 
   cat("Computing correlation matrix...\n")
-  if (PorS == "P") {
-    df <- rcorr(as.matrix(df), type = "pearson")
-  } else if (PorS == "S") {
-    df <- rcorr(as.matrix(df), type = "spearman")
-  } else {
-    cat("Error: PorS must be either P or S")
-  }
+    if (nrow(df) > 4) {
+    if (PorS == "P") {
+      df <- rcorr(as.matrix(df), type = "pearson")
+    } else if (PorS == "S") {
+      df <- rcorr(as.matrix(df), type = "spearman")
+    } else {
+      cat("Error: Matrix must have >4 observations \n")
+      return(NULL)
+    }
+    
   df_r = as.data.frame(df$r)
   df_p = as.data.frame(df$P)
   cat("extracting data...\n")
