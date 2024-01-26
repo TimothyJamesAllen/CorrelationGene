@@ -66,20 +66,17 @@ correlation = function(df, goi, gene_list, PorS, ensembl) {
   }
 
 # Loop through each gene ID in the merged data frame
-cat("Adding SFARI Gene column...\n", "make sure your gene column is names SYMBOL\n")
-for (i in 1:nrow(merged)) {
-  n <- merged$SYMBOL[i]
-  if (n %in% SFARI_genes$gene.symbol) {
-    merged$SFARI.Gene[i] <- "TRUE"
-  } else {
-    merged$SFARI.Gene[i] <- "FALSE"
+  cat("Adding SFARI Gene column...\n", "make sure your gene column is named 'SYMBOL'\n")
+  for (i in 1:nrow(merged)) {
+    n <- merged$SYMBOL[i]
+    if (n %in% SFARI_genes$gene.symbol) {
+      merged$SFARI.Gene[i] <- "TRUE"
+    } else {
+      merged$SFARI.Gene[i] <- "FALSE"
+    }
   }
+  
+  cat("Done.\n")
+  
+  return(merged)
 }
-
-cat("Done.\n")
-
-    return(merged)
-  } else {
-    cat("Error: Not enough observations to compute correlation matrix\n")
-    return(NULL)
-  }
