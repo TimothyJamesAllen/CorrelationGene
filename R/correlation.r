@@ -19,9 +19,8 @@
 #'
 #' @export
 correlation = function(df, goi, gene_list, PorS, ensembl) {
-  
+
   cat("Computing correlation matrix...\n")
-  
   if (nrow(df) > 4) {
     if (PorS == "P") {
       df <- rcorr(as.matrix(df), type = "pearson")
@@ -50,18 +49,37 @@ correlation = function(df, goi, gene_list, PorS, ensembl) {
   cat("Merging data frames...\n")
   common_genes = intersect(merged$gene, gene_list )
   merged = merged[merged$gene %in% common_genes, ]
-    
-  cat("Adding SFARI Gene column...\n", "make sure your gene column is named 'SYMBOL'\n")
-  for (i in 1:nrow(merged)) {
-    n <- merged$SYMBOL[i]
-    if (n %in% SFARI_genes$gene.symbol) {
-      merged$SFARI.Gene[i] <- "TRUE"
-    } else {
-      merged$SFARI.Gene[i] <- "FALSE"
-    }
+
+
+
+  if (ensembl == TRUE) {
+    cat("converting ensemble IDs to gene symbols...\n")
+    symbols <- AnnotationDbi::select(org.Hs.eg.db, keys = merged$gene,
+                                 columns = "SYMBOL",
+                                 keytype = "ENSEMBL")
+
+
+    merged <- merge(merged, symbols, by.x = "gene", by.y = "ENSEMBL")
+
+    cat("Done.\n")
+
   }
-    
-  cat("Done.\n")
-    
-  return(merged)
+
+# Loop through each gene ID in the merged data frame
+cat("Adding SFARI Gene column...\n", "make sure your gene column is names SYMBOL\n")
+for (i in 1:nrow(merged)) {
+  n <- merged$SYMBOL[i]
+  if (n %in% SFARI_genes$gene.symbol) {
+    merged$SFARI.Gene[i] <- "TRUE"
+  } else {
+    merged$SFARI.Gene[i] <- "FALSE"
+  }
 }
+
+cat("Done.\n")
+
+    return(merged)
+  } else {
+    cat("Error: Not enough observations to compute correlation matrix\n")
+    return(NULL)
+  }
