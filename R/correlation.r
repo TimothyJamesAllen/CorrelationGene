@@ -58,8 +58,6 @@ correlation = function(df, goi, gene_list, PorS, ensembl) {
 
   }
 
-    return(merged)
-
 # Loop through each gene ID in the merged data frame
 cat("Adding SFARI Gene column...\n", "make sure your gene column is names SYMBOL\n")
 for (i in 1:nrow(merged)) {
