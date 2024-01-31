@@ -55,11 +55,14 @@ Please raise any issues through Github or email me at timothy.james.allen@ki.se 
 
 # Changelog
 
-0.1.4 - Pipeline now suppports ensembl genes in the Seurat object, where you can specify if ensembl in the parameters. \n
+0.1.4 - Pipeline now suppports ensembl genes in the Seurat object, where you can specify if ensembl in the parameters. 
         The p.adj metric is now added in the result which uses the BH method.
-        Removed biomaRt in favour for org.Hs.eg.db which adds annotations faster and mroe reliably. \n
-0.1.3 - Gene descriptions are added using biomaRt automatically in the correlation() function. \n
-0.1.2 - You can now use spearman test in correlation() and express_cell_SCT/express_cell_RNA(). \n
+        
+        Removed biomaRt in favour for org.Hs.eg.db which adds annotations faster and more reliably.
+        
+0.1.3 - Gene descriptions are added using biomaRt automatically in the correlation() function. 
+
+0.1.2 - You can now use spearman test in correlation() and express_cell_SCT/express_cell_RNA(). 
 
 Example for 0.1.2:
 
