@@ -33,6 +33,8 @@ express_cell_SCT = function(obj, goi, gene_list, PorS, ensembl) {
     }
     merged = merged[order(merged$R, decreasing = TRUE), ]
     cat("Done.\n")
+      cat("Calculated padj values...\n")
+      merged$padj = p.adjust(merged$P, method = "BH")
     toc()
 
 

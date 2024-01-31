@@ -20,3 +20,4 @@ celltype_expression_RNA = function(obj, celltype, GOI, gene_list) {
     celltype_expression_xbox = celltype_expression_xbox[-which(rownames(celltype_expression_xbox) == "gene"), ]
     return(celltype_expression_xbox)
 }
+
