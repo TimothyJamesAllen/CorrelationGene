@@ -1,4 +1,4 @@
-# CorrelationGene 0.1.3
+# CorrelationGene 0.1.4
 
 CorrelationGene is a small R package that takes any Seurat object, gene of interest and gene list and calculates the Pearson correlations between the identities specified by the user. The output has each SFARI gene annotated, (https://gene.sfari.org/database/human-gene/).
 
@@ -8,7 +8,7 @@ Please raise any issues through Github or email me at timothy.james.allen@ki.se 
 
 - Take multiple genes of interests
 
-- Further statistical functions on the correlations i.e. T test, Shapiro-test, FDR
+- Further statistical functions on the correlations i.e. T test, Shapiro-test
 
 - Statistical tests for differences in correlation matrices
 
@@ -52,11 +52,13 @@ Please raise any issues through Github or email me at timothy.james.allen@ki.se 
 
 >library(org.Hs.eg.db)
 
->library(biomaRt)
 
 # Changelog
 
-0.1.3 - Gene descriptions are added using biomaRt automatically in the correlation() function
+0.1.4 - Pipeline now suppports ensembl genes in the Seurat object, where you can specify if ensembl in the parameters. 
+        The p.adj metric is now added in the result which uses the BH method.
+        Removed biomaRt in favour for org.Hs.eg.db which adds annotations faster and mroe reliably. 
+0.1.3 - Gene descriptions are added using biomaRt automatically in the correlation() function.
 0.1.2 - You can now use spearman test in correlation() and express_cell_SCT/express_cell_RNA(). 
 
 Example for 0.1.2:
