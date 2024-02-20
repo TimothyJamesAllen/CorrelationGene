@@ -42,6 +42,8 @@ express_cell_RNA = function(obj, goi, gene_list, PorS, ensembl) {
   }
   
   merged = merged[order(merged$R, decreasing = TRUE), ]
+  cat("Calculated padj values...\n")
+  merged$padj = p.adjust(merged$P, method = "BH")
   cat("Done.\n")
   toc()
 
