@@ -15,7 +15,7 @@ express_cell_RNA = function(obj, goi, gene_list, PorS, ensembl) {
     cat("Processing celltype: ", celltype, " into a dataframe", "\n")
     celltype_df_a = celltype_expression_RNA(obj, celltype, goi, gene_list)
     cellnumber = dim(celltype_df_a)[1]
-    celltype_df_a$cell_number = cellnumber
+
     
     cat("celltype df dimensions: ", dim(celltype_df_a), "\n")
 
@@ -34,6 +34,7 @@ express_cell_RNA = function(obj, goi, gene_list, PorS, ensembl) {
     
     cat("Adding celltype column...\n")
     celltype_df_a$celltype = celltype
+    celltype_df_a$cell_numbers = cellnumber
     cat("Merging data frames...\n")
     merged = rbind(merged, celltype_df_a)
   }
