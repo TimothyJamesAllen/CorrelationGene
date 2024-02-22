@@ -28,7 +28,7 @@ Please raise any issues through Github or email me at timothy.james.allen@ki.se 
 - Hmisc
 - moments 
 - org.Hs.eg.db
-- biomaRt
+- bestNormalize
 
 # Installation
 
@@ -51,6 +51,8 @@ Please raise any issues through Github or email me at timothy.james.allen@ki.se 
 >library(moments)
 
 >library(org.Hs.eg.db)
+
+>library("bestNormalize")
 
 
 # Changelog
