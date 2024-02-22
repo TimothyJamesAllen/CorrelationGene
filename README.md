@@ -1,4 +1,4 @@
-# CorrelationGene 0.1.4
+# CorrelationGene 0.1.5
 
 CorrelationGene is a small R package that takes any Seurat object, gene of interest and gene list and calculates the Pearson correlations between the identities specified by the user. The output has each SFARI gene annotated, (https://gene.sfari.org/database/human-gene/).
 
@@ -54,6 +54,7 @@ Please raise any issues through Github or email me at timothy.james.allen@ki.se 
 
 
 # Changelog
+0.1.5 - Added scoring to the results that is based on a sigmoidal model that incorporates the R value, padj value, the maximum amount of cells in each celltype and orderNorm for normalization.
 
 0.1.4 - Pipeline now suppports ensembl genes in the Seurat object, where you can specify if ensembl in the parameters. 
         The p.adj metric is now added in the result which uses the BH method.
