@@ -1,7 +1,5 @@
 #' Finds correlation between a gene of interest and all other genes in a Seurat object per level
 #'
-#' 
-#'
 #' @param obj Seurat object. gene_list Gene list. goi Gene of interest. ensembl boolean
 #' 
 #' @return data frame with correlation values
@@ -9,7 +7,6 @@
 #' @examples
 #' express_cell_RNA(obj, goi, gene_list)
 #' 
-#'
 #' @export
 express_cell_RNA = function(obj, goi, gene_list, PorS, ensembl) {
   merged = data.frame()
@@ -17,15 +14,15 @@ express_cell_RNA = function(obj, goi, gene_list, PorS, ensembl) {
   for (celltype in levels(obj)) {
     cat("Processing celltype: ", celltype, " into a dataframe", "\n")
     celltype_df_a = celltype_expression_RNA(obj, celltype, goi, gene_list)
+    cellnumber = dim(celltype_df_a)[1]
+    celltype_df_a$cell_number = cellnumber
     
     cat("celltype df dimensions: ", dim(celltype_df_a), "\n")
 
     if(any(!is.na(dim(celltype_df_a))) == FALSE){
-        cat("Not enough observations in", celltype, "\n")
-        next
-
+      cat("Not enough observations in", celltype, "\n")
+      next
     }
-
 
     if (PorS == "P") {
       celltype_df_a <- correlation(celltype_df_a, goi, gene_list, "P", ensembl)
@@ -45,6 +42,24 @@ express_cell_RNA = function(obj, goi, gene_list, PorS, ensembl) {
   cat("Calculated padj values...\n")
   merged$padj = p.adjust(merged$P, method = "BH")
   cat("Done.\n")
+
+
+  equation = function(a,x,R, padj) {
+    b = a/1e+9
+    c = a/2e+4
+    y = a / (1+exp(-(b*x-c)))
+    score = (y*R)/(log(padj+2))
+    score = orderNorm(score)
+    score = score$x.t
+    return(score)
+  }
+  
+
+  cat = "Calculating scores...\n"
+  merged$score = equation(max(cell_number), merged$cell_number, merged$R, merged$padj)
+  
+  merged = merged[order(merged$score, decreasing = TRUE), ]
+
   toc()
 
   return(merged)
