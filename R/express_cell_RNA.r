@@ -9,20 +9,19 @@
 #' 
 #' @export
 express_cell_RNA = function(obj, goi, gene_list, PorS, ensembl) {
-  merged = data.frame()
+    merged = data.frame()
   tic()
   for (celltype in levels(obj)) {
     cat("Processing celltype: ", celltype, " into a dataframe", "\n")
     celltype_df_a = celltype_expression_RNA(obj, celltype, goi, gene_list)
-    cellnumber = dim(celltype_df_a)[1]
-
-    
-    cat("celltype df dimensions: ", dim(celltype_df_a), "\n")
-
-    if(any(!is.na(dim(celltype_df_a))) == FALSE){
-      cat("Not enough observations in", celltype, "\n")
+    print(dim(celltype_df_a))
+    cell_number = dim(celltype_df_a)[1]
+    if (is.null(cell_number) || cell_number == "") {
+      cat("Skipping celltype: ", celltype, " because it has no cells", "\n")
       next
     }
+
+  
 
     if (PorS == "P") {
       celltype_df_a <- correlation(celltype_df_a, goi, gene_list, "P", ensembl)
@@ -34,7 +33,7 @@ express_cell_RNA = function(obj, goi, gene_list, PorS, ensembl) {
     
     cat("Adding celltype column...\n")
     celltype_df_a$celltype = celltype
-    celltype_df_a$cell_numbers = cellnumber
+    celltype_df_a$cell_number = cell_number
     cat("Merging data frames...\n")
     merged = rbind(merged, celltype_df_a)
   }
@@ -45,23 +44,28 @@ express_cell_RNA = function(obj, goi, gene_list, PorS, ensembl) {
   cat("Done.\n")
 
 
-  equation = function(a,x,R, padj) {
-    b = a/1e+9
-    c = a/2e+4
-    y = a / (1+exp(-(b*x-c)))
-    score = (y*R)/(log(padj+2))
-    score = orderNorm(score)
-    score = score$x.t
-    return(score)
-  }
-  
-
+equation = function(a,x,R, padj) {
+  b = a/1e+9
+  c = a/2e+4
+  y = a / (1+exp(-(b*x-c)))
+  score = (y*R)/(log(padj+2))
+  score = orderNorm(score)
+  score = score$x.t
+  return(score)
+}
   cat = "Calculating scores...\n"
-  merged$score = equation(max(cell_number), merged$cell_number, merged$R, merged$padj)
+
+  a = max(merged$cell_number, na.rm = TRUE)
+  print(a)
+
+  merged$score = equation(a, merged$cell_number, merged$R, merged$padj)
   
   merged = merged[order(merged$score, decreasing = TRUE), ]
+
+
 
   toc()
 
   return(merged)
 }
+
