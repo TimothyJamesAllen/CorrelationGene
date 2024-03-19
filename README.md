@@ -41,9 +41,9 @@ $$
 \text{score} = \frac{yR}{\log(\text{padj}+2)}
 $$
 
-![a = max cell number, b = smoothing parameter, c = constant](images/animation.gif){fig-align="center"}
+![a = max cell number, b = smoothing parameter, c = constant](images/animation.gif)
 
-![](images/animation_score-3.gif){fig-align="center"}
+![](images/animation_score-3.gif)
 
 There is intended bias for the y values to be exponentially larger at larger x values for scores to favor high scores for Pearson coefficients calculated with more cell samples. This hopefully removes inflated correlation values associated with low cell number count in RNA-seq data. In the future, the parameters needs to be optimized.
 
