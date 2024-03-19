@@ -14,3 +14,7 @@ NeedsCompilation: no
 Packaged: 2024-01-25 14:54:05 UTC; artemis
 Depends: R (>= 4.3.1)
 LazyData: True
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
