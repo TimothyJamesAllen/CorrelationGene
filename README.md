@@ -32,6 +32,7 @@ equation = function(a,x,R, padj) {
   return(score)
 }
 ```
+a = maximum cell number of a condition
 
 $$
 y = \frac{a}{1 + e^{-(bx - c)}}, b = 4.13e-10, c = 3
