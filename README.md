@@ -4,21 +4,7 @@ CorrelationGene is a small R package that takes any Seurat object, gene of inter
 
 Please raise any issues through Github or email me at timothy.james.allen@ki.se for questions/issues/contributions! 
 
-# Future functions
-
-- Take multiple genes of interests
-
-- Further statistical functions on the correlations i.e. T test, Shapiro-test
-
-- Statistical tests for differences in correlation matrices
-
-- Make a vignette!
-
-- Fix SFARI gene annotation ✓ (NEW!! in CorrelationGene 0.1.1)
-
-- Add annotation for other NDDs 
-
-- Add dependencies to the actual package
+Vignette available in vignettes folder.
 
 # Dependencies 
 
