@@ -45,8 +45,8 @@ express_cell_RNA = function(obj, goi, gene_list, PorS, ensembl) {
 
 
 equation = function(a,x,R, padj) {
-  b = a/1e+9
-  c = a/2e+4
+  b = a/4.138e+10
+  c = 3
   y = a / (1+exp(-(b*x-c)))
   score = (y*R)/(log(padj+2))
   score = orderNorm(score)
