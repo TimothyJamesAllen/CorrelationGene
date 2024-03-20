@@ -10,6 +10,7 @@ library(Hmisc)
 library(moments)
 library(org.Hs.eg.db)
 library(CorrelationGene)
+library(bestNormalize)
 
 dev = readRDS("dev_processed.rds") # This dataset is from Velmeshev et al. 2023, and has already been processed through the Seurat workflow.
 Idents(dev) = "lineage" # It is important to set the identity to whatever condition you would like.
