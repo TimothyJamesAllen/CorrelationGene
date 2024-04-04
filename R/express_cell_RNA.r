@@ -44,19 +44,15 @@ express_cell_RNA = function(obj, goi, gene_list, PorS, ensembl) {
   cat("Done.\n")
 
 
-equation = function(a,x,R, padj) {
-  b = a/4.138e+10
-  c = 3
+equation = function(x,R, padj) {
+  a = 30000
+  b = 6.9
+  c = 0.000675
   y = a / (1+exp(-(b*x-c)))
   score = (y*R)/(log(padj+2))
-  score = orderNorm(score)
-  score = score$x.t
   return(score)
 }
   cat = "Calculating scores...\n"
-
-  a = max(merged$cell_number, na.rm = TRUE)
-  print(a)
 
   merged$score = equation(a, merged$cell_number, merged$R, merged$padj)
   
@@ -68,4 +64,3 @@ equation = function(a,x,R, padj) {
 
   return(merged)
 }
-
