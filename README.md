@@ -35,7 +35,7 @@ equation = function(x,R, padj) {
 a = maximum cell number of a condition
 
 $$
-y = \frac{a}{1 + e^{-(bx - c)}}, b = 4.13E-10, c = 3
+y = \frac{a}{1 + e^{-(bx - c)}} a = 30000, b = 6.9, c = 0.000675
 $$
 
 $$
@@ -43,8 +43,7 @@ $$
 $$
 
 
-
-There is intended bias for the y values to be exponentially larger at larger x values for scores to favor high scores for Pearson coefficients calculated with more cell samples. This hopefully removes inflated correlation values associated with low cell number count in RNA-seq data. 
+There is intended bias for the y values to be exponentially larger at larger x values for scores to favor high scores for Pearson coefficients calculated with more cell samples. The upper limit for the scoring function is to account for 30,000 cells. This is an arbitary number that allows for sufficient bias towards identities with larger cell populations, but also doesn't cause the sigmoidal scoring function to still favour higher R values with low cell counts. Therefore, score doesn't increase a large amount past a cell population of 30,0000.
 
 ## Workflow
 
@@ -60,10 +59,10 @@ RFX3_correlation = express_cell_RNA(dev, goi, gene_list, PorS, ensembl) #There i
 
 | Gene            | R          | P   | SYMBOL     | SFARI.Gene | celltype | cell_number | padj | score    |
 |-----------------|------------|-----|------------|------------|----------|-------------|------|----------|
-| ENSG00000144619 | 0.32197... | 0   | CNTN4      | TRUE       | ExNeu    | 13440       | 0    | 3.861... |
-| ENSG00000117069 | 0.31955... | 0   | ST6GALNAC5 | FALSE      | ExNeu    | 13440       | 0    | 3.768... |
-| ENSG00000133019 | 0.30312... | 0   | CHRM3      | TRUE       | ExNeu    | 13440       | 0    | 3.554... |
-| ENSG00000175928 | 0.29390... | 0   | LRRN1      | FALSE      | ExNeu    | 13440       | 0    | 3.124... |
+| ENSG00000144619 | 0.32197... | 0   | CNTN4      | TRUE       | ExNeu    | 13440       | 0    | 12122122 |
+| ENSG00000117069 | 0.31955... | 0   | ST6GALNAC5 | FALSE      | ExNeu    | 13440       | 0    | 10546456 |
+| ENSG00000133019 | 0.30312... | 0   | CHRM3      | TRUE       | ExNeu    | 13440       | 0    | 13532554 |
+| ENSG00000175928 | 0.29390... | 0   | LRRN1      | FALSE      | ExNeu    | 13440       | 0    | 02391238 |
 
 Example output
 
