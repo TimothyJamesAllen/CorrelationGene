@@ -23,13 +23,12 @@ Seurat is one of the most widely used R packages for RNA-seq analysis and visual
 ### Equation for scoring function
 
 ```{r}
-equation = function(a,x,R, padj) {
-  b = a/4.138e+10
-  c = 3
+equation = function(x,R, padj) {
+  a = 30000
+  b = 6.9
+  c = 0.000675
   y = a / (1+exp(-(b*x-c)))
   score = (y*R)/(log(padj+2))
-  score = orderNorm(score)
-  score = score$x.t
   return(score)
 }
 ```
@@ -43,11 +42,9 @@ $$
 \text{score} = \frac{yR}{\log(\text{padj}+2)}
 $$
 
-![a = max cell number, b = smoothing parameter, c = constant](images/animation.gif)
 
-![](images/animation_score-3.gif)
 
-There is intended bias for the y values to be exponentially larger at larger x values for scores to favor high scores for Pearson coefficients calculated with more cell samples. This hopefully removes inflated correlation values associated with low cell number count in RNA-seq data. In the future, the parameters needs to be optimized.
+There is intended bias for the y values to be exponentially larger at larger x values for scores to favor high scores for Pearson coefficients calculated with more cell samples. This hopefully removes inflated correlation values associated with low cell number count in RNA-seq data. 
 
 ## Workflow
 
