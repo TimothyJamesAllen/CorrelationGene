@@ -1,5 +1,10 @@
 ## CorrelationGene
 
+
+```{r}
+devtools::install_github("TimothyJamesAllen/CorrelationGene")
+```
+
 ## Getting Started
 
 ```{r}
