@@ -54,7 +54,7 @@ equation = function(x,R, padj) {
 }
   cat = "Calculating scores...\n"
 
-  merged$score = equation(a, merged$cell_number, merged$R, merged$padj)
+  merged$score = equation(a, merged$R, merged$padj)
   
   merged = merged[order(merged$score, decreasing = TRUE), ]
 
