@@ -1,4 +1,4 @@
-d#' Finds correlation between a gene of interest and all other genes in a Seurat object per level
+#' Finds correlation between a gene of interest and all other genes in a Seurat object per level
 #'
 #' @param obj Seurat object. gene_list Gene list. goi Gene of interest. ensembl boolean
 #' 
