@@ -1,4 +1,4 @@
-#' Finds correlation between a gene of interest and all other genes in a Seurat object per level
+d#' Finds correlation between a gene of interest and all other genes in a Seurat object per level
 #'
 #' @param obj Seurat object. gene_list Gene list. goi Gene of interest. ensembl boolean
 #' 
@@ -54,7 +54,7 @@ equation = function(x,R, padj) {
 }
   cat = "Calculating scores...\n"
 
-  merged$score = equation(a, merged$R, merged$padj)
+  merged$score = equation(merged$cell_number, merged$R, merged$padj)
   
   merged = merged[order(merged$score, decreasing = TRUE), ]
 
