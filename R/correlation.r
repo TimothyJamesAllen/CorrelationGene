@@ -32,29 +32,25 @@ correlation = function(df, goi, gene_list, PorS, ensembl) {
   goi_only_p = as.data.frame(df_p[goi], row.names = rownames(df_p))
   goi_only_r = as.data.frame(df_r[goi], row.names = rownames(df_r))
   cat("adding gene names...\n")
-  goi_only_p$gene = rownames(goi_only_p)
-  goi_only_r$gene = rownames(goi_only_r)
-  merged = merge(goi_only_r, goi_only_p, by = "gene")
+  goi_only_p$SYMBOL = rownames(goi_only_p)
+  goi_only_r$SYMBOL = rownames(goi_only_r)
+  merged = merge(goi_only_r, goi_only_p, by = "SYMBOL")
   colnames(merged)[2:3] <- c("R","P")  
   merged = merged[order(merged$R, decreasing = TRUE), ]
   cat("Merging data frames...\n")
-  common_genes = intersect(merged$gene, gene_list )
-  merged = merged[merged$gene %in% common_genes, ]
+  common_genes = intersect(merged$SYMBOL, gene_list )
+  merged = merged[merged$SYMBOL %in% common_genes, ]
   
   if (ensembl == TRUE) {
     cat("converting ensemble IDs to gene symbols...\n")
-    symbols <- AnnotationDbi::select(org.Hs.eg.db, keys = merged$gene,
+    symbols <- AnnotationDbi::select(org.Hs.eg.db, keys = merged$SYMBOL,
                                      columns = "SYMBOL",
                                      keytype = "ENSEMBL")
-    merged <- merge(merged, symbols, by.x = "gene", by.y = "ENSEMBL")
+    merged <- merge(merged, symbols, by.x = "SYMBOL", by.y = "ENSEMBL")
     cat("Done.\n")
   }
 
 
-  merged$SYMBOL = merged$gene
-
-
-  
   cat("Adding SFARI Gene column...\n", "make sure your gene column is named 'SYMBOL'\n")
   for (i in 1:nrow(merged)) {
     n <- merged$SYMBOL[i]
