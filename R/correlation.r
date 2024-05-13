@@ -49,6 +49,11 @@ correlation = function(df, goi, gene_list, PorS, ensembl) {
     merged <- merge(merged, symbols, by.x = "gene", by.y = "ENSEMBL")
     cat("Done.\n")
   }
+
+
+  merged$SYMBOL = merged$gene
+
+
   
   cat("Adding SFARI Gene column...\n", "make sure your gene column is named 'SYMBOL'\n")
   for (i in 1:nrow(merged)) {
