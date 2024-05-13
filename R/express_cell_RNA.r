@@ -16,7 +16,7 @@ express_cell_RNA = function(obj, goi, gene_list, PorS, ensembl) {
     celltype_df_a = celltype_expression_RNA(obj, celltype, goi, gene_list)
     print(dim(celltype_df_a))
     cell_number = dim(celltype_df_a)[1]
-    if (is.null(cell_number) || cell_number == "") {
+    if (is.null(cell_number) || cell_number == "" || cell_number < 4) {
       cat("Skipping celltype: ", celltype, " because it has no cells", "\n")
       next
     }
